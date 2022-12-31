@@ -4,7 +4,7 @@ st.set_page_config(
     page_title="Home",
     page_icon="🏠",
     initial_sidebar_state="expanded",
-    layout='wide'
+    layout='centered'
 )
 
 sources = st.sidebar.expander('Data source')

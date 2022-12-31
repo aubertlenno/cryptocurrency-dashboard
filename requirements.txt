@@ -4,4 +4,3 @@ plotly
 yfinance
 prophet
 plotly.express
-plotly.graph_objs

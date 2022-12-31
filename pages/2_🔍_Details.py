@@ -2,18 +2,21 @@ import streamlit as st
 import plotly.graph_objs as go
 import yfinance as yf
 import plotly.express as px
-from coinmarketcapapi import CoinMarketCapAPI
-cmc = CoinMarketCapAPI('72a52dec-0aae-45b0-92e0-6a622d8ab1b4')
 
+st.set_page_config(
+    page_title="Details",
+    page_icon="🔍",
+    initial_sidebar_state="expanded"
+)
 
 class Crypto:
     def __init__(self, name, symbol):
         self.__name = name
         self.__symbol = symbol
         self.ticker = symbol + "-USD"
-        self.data_1d = yf.download(tickers=self.ticker, period="1d", interval="15m")
-        self.data_3y = yf.download(tickers=self.ticker, period="3y")
         self.initialize = yf.Ticker(self.ticker)
+        self.data_1d = self.initialize.history(period="1d", interval="5m")
+        self.data_3y = self.initialize.history(period="3y", interval="1d")
 
     def make_candlestick(self):
         fig = go.Figure()
@@ -24,7 +27,7 @@ class Crypto:
             close=self.data_1d['Close'], name = 'market data'))
 
         fig.update_layout(
-            title=self.__name + ' Live Candlestick Chart',
+            title=self.__name + ' 24 Hours Candlestick Chart',
             yaxis_title=self.__name + ' Price (in US Dollars)'
         )
 
@@ -60,7 +63,7 @@ class Crypto:
         fig = go.Figure([go.Scatter(x=df['Date'], y=df['High'])])
 
         fig.update_layout(
-            title=self.__name + ' Live Line Chart',
+            title=self.__name + ' 3 Years Chart',
             yaxis_title=self.__name + ' Price (in US Dollars)'
         )
 
@@ -68,8 +71,8 @@ class Crypto:
             rangeslider_visible=True,
             rangeselector=dict(
                 buttons=list([
-                    dict(count=1, label="1m", step="month", stepmode="backward"),
-                    dict(count=6, label="6m", step="month", stepmode="backward"),
+                    dict(count=1, label="1mo", step="month", stepmode="backward"),
+                    dict(count=6, label="6mo", step="month", stepmode="backward"),
                     dict(count=1, label="YTD", step="year", stepmode="todate"),
                     dict(count=1, label="1y", step="year", stepmode="backward"),
                     dict(step="all")

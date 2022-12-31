@@ -9,6 +9,9 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+sources = st.sidebar.expander('Data source')
+sources.write('''[Yahoo Finance](https://finance.yahoo.com)''')
+
 class Crypto:
     def __init__(self, name, symbol):
         self.__name = name

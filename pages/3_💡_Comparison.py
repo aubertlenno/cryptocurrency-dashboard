@@ -9,6 +9,9 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
+sources = st.sidebar.expander('Data source')
+sources.write('''[Yahoo Finance](https://finance.yahoo.com)''')
+
 st.title("Cryptocurrencies Comparison")
 
 crypto_name = ["Bitcoin (BTC)", "Ethereum (ETH)", "XRP (XRP)", "Tether (USDT)", "Dogecoin (DOGE)", "Cardano (ADA)", "Polygon (MATIC)", "Binance Coin (BNB)", "USD Coin (USDC)", "Binance USD (BUSD)"]

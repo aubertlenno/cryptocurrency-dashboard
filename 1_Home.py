@@ -12,8 +12,6 @@ sources.write('''[Yahoo Finance](https://finance.yahoo.com)''')
 
 st.title('Cryptocurrency Dashboard')
 
-st.image(image='./web-img/crypto.jpeg', width=800)
-
 st.markdown(
     '''
     ## Overview

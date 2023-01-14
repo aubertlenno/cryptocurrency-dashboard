@@ -78,7 +78,7 @@ class Prediction:
         model.fit(data)
 
         # Predict
-        future = model.make_future_dataframe(periods=180)
+        future = model.make_future_dataframe(periods=1825)
         prediction = model.predict(future)
 
         # Plot in a graph
@@ -101,7 +101,7 @@ crypto_predict = Prediction(crypto_name, crypto_symbol)
 crypto_data_5y = crypto_predict.getData()
 crypto_data_1y = crypto_predict.getData_1year()
 
-st.subheader('Live 3 years graph')
+st.subheader('Live 5 years graph')
 st.plotly_chart(crypto_predict.visualize(crypto_data_5y))
 
 st.subheader('1 Month Prediction')

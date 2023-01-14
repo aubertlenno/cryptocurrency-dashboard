@@ -1,3 +1,4 @@
+# Importing modules
 import streamlit as st
 import yfinance as yf
 import plotly.express as px
@@ -6,20 +7,24 @@ import plotly.graph_objs as go
 from prophet import Prophet
 from prophet.plot import plot_plotly
 
+# Setting the page configuration
 st.set_page_config(
     page_title="Prediction",
     page_icon="🔮",
     initial_sidebar_state="expanded",
 )
 
+# Making the sidebar
 sources = st.sidebar.expander('Data source')
 sources.write('''[Yahoo Finance](https://finance.yahoo.com)''')
 
+# Defining class name
 class Prediction:
     def __init__(self, name, symbol):
         self.name = name
         self.symbol = symbol
     
+    # Make function for getting the data of the crypto
     def getData(self):
         ticker = self.symbol + "-USD"
         initialize = yf.Ticker(ticker)
@@ -29,6 +34,7 @@ class Prediction:
         data['Date'] = data['Date'].dt.date
         return data
 
+    # Make function to get the 1 year data
     def getData_1year(self):
         ticker = self.symbol + "-USD"
         initialize = yf.Ticker(ticker)
@@ -39,8 +45,8 @@ class Prediction:
         data = data.rename(columns={"Date": "ds", "Close": "y"})
         return data
 
+    
     def visualize(self,data):
-        # Reseting the index
         # Converting the datatype to float
         for i in ['Open', 'High', 'Close', 'Low']:
             data[i] = data[i].astype('float64')

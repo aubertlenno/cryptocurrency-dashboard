@@ -1,5 +1,7 @@
+# Importing modules
 import streamlit as st
 
+# Setting the page configuration
 st.set_page_config(
     page_title="Home",
     page_icon="🏠",
@@ -7,13 +9,14 @@ st.set_page_config(
     layout='centered'
 )
 
+# Making the sidebar
 sources = st.sidebar.expander('Data source')
 sources.write('''[Yahoo Finance](https://finance.yahoo.com)''')
 
+# Printing the title for the page
 st.title('Cryptocurrency Dashboard')
 
-st.image(image='./web-img/crypto.jpeg', width=800)
-
+# Printing the overview section
 st.markdown(
     '''
     ## Overview
@@ -21,6 +24,7 @@ st.markdown(
     '''
 )
 
+# Printing the definition section
 st.markdown(
     '''
     ## Definition
@@ -32,6 +36,7 @@ st.markdown(
     '''
 )
 
+# Printing the disclaimer section
 st.markdown(
     '''
     ## Disclaimer

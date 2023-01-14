@@ -4,3 +4,4 @@ plotly
 yfinance
 prophet
 plotly.express
+cryptocmd

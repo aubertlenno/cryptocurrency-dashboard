@@ -28,17 +28,17 @@ class Prediction:
     def getData(self):
         ticker = self.symbol + "-USD"
         initialize = yf.Ticker(ticker)
-        data = initialize.history(period='5y', interval='1d')
+        data = initialize.history(period='3y', interval='1d')
         data.reset_index(inplace=True)
         data['Date'] = pd.to_datetime(data['Date'])
         data['Date'] = data['Date'].dt.date
         return data
 
     # Make function to get the 1 year data
-    def getData_1year(self):
+    def getData_3year(self):
         ticker = self.symbol + "-USD"
         initialize = yf.Ticker(ticker)
-        data = initialize.history(period='1y', interval='1d')
+        data = initialize.history(period='3y', interval='1d')
         data.reset_index(inplace=True)
         data['Date'] = pd.to_datetime(data['Date'])
         data['Date'] = data['Date'].dt.date
@@ -78,7 +78,7 @@ class Prediction:
         model.fit(data)
 
         # Predict
-        future = model.make_future_dataframe(periods=1825)
+        future = model.make_future_dataframe(periods=180)
         prediction = model.predict(future)
 
         # Plot in a graph
@@ -101,10 +101,10 @@ crypto_predict = Prediction(crypto_name, crypto_symbol)
 crypto_data_5y = crypto_predict.getData()
 crypto_data_1y = crypto_predict.getData_1year()
 
-st.subheader('Live 5 years graph')
+st.subheader('Live 3 years graph')
 st.plotly_chart(crypto_predict.visualize(crypto_data_5y))
 
-st.subheader('1 Month Prediction')
+st.subheader('3 Month Prediction')
 disc = st.expander('Disclaimer. (Click to expand)')
 disc.write("This is not a financial advise, buy at your own risk.")
 st.plotly_chart(crypto_predict.predict(crypto_data_1y))

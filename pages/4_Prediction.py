@@ -35,7 +35,7 @@ class Prediction:
         return data
 
     # Make function to get the 1 year data
-    def getData_3year(self):
+    def getDataForPrediction(self):
         ticker = self.symbol + "-USD"
         initialize = yf.Ticker(ticker)
         data = initialize.history(period='3y', interval='1d')
@@ -98,13 +98,13 @@ crypto_symbol = words[-1].strip("()")
 
 crypto_predict = Prediction(crypto_name, crypto_symbol)
 
-crypto_data_5y = crypto_predict.getData()
-crypto_data_1y = crypto_predict.getData_1year()
+crypto_data_3y = crypto_predict.getData()
+crypto_data_for_prediction = crypto_predict.getDataForPrediction()
 
 st.subheader('Live 3 years graph')
-st.plotly_chart(crypto_predict.visualize(crypto_data_5y))
+st.plotly_chart(crypto_predict.visualize(crypto_data_3y))
 
 st.subheader('3 Month Prediction')
 disc = st.expander('Disclaimer. (Click to expand)')
 disc.write("This is not a financial advise, buy at your own risk.")
-st.plotly_chart(crypto_predict.predict(crypto_data_1y))
+st.plotly_chart(crypto_predict.predict(crypto_data_for_prediction))

@@ -16,7 +16,8 @@ sources.write('''[Yahoo Finance](https://finance.yahoo.com)''')
 # Printing the title for the page
 st.title('Cryptocurrency Dashboard')
 
-# Printing the overview section
+st.image(image='./web-img/crypto.jpeg', width=800)
+
 st.markdown(
     '''
     ## Overview

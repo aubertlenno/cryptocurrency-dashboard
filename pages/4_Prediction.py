@@ -12,6 +12,7 @@ st.set_page_config(
     page_title="Prediction",
     page_icon="🔮",
     initial_sidebar_state="expanded",
+    
 )
 
 # Making the sidebar
@@ -101,10 +102,10 @@ crypto_predict = Prediction(crypto_name, crypto_symbol)
 crypto_data_3y = crypto_predict.getData()
 crypto_data_for_prediction = crypto_predict.getDataForPrediction()
 
-st.subheader('Live 3 years graph')
+st.subheader('Live 3 Years Chart')
 st.plotly_chart(crypto_predict.visualize(crypto_data_3y))
 
-st.subheader('3 Month Prediction')
+st.subheader('6 Months Prediction')
 disc = st.expander('Disclaimer. (Click to expand)')
 disc.write("This is not a financial advise, buy at your own risk.")
 st.plotly_chart(crypto_predict.predict(crypto_data_for_prediction))

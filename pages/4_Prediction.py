@@ -11,8 +11,7 @@ from prophet.plot import plot_plotly
 st.set_page_config(
     page_title="Prediction",
     page_icon="🔮",
-    initial_sidebar_state="expanded",
-    
+    initial_sidebar_state="expanded",   
 )
 
 # Making the sidebar
@@ -35,7 +34,7 @@ class Prediction:
         data['Date'] = data['Date'].dt.date
         return data
 
-    # Make function to get the 1 year data
+    # Make function to get the data for the prediction
     def getDataForPrediction(self):
         ticker = self.symbol + "-USD"
         initialize = yf.Ticker(ticker)
@@ -52,12 +51,15 @@ class Prediction:
         for i in ['Open', 'High', 'Close', 'Low']:
             data[i] = data[i].astype('float64')
 
+        # Making the chart
         fig = go.Figure([go.Scatter(x=data['Date'], y=data['High'])])
 
+        # Change the label for y-axis
         fig.update_layout(
             yaxis_title = 'Price (in US Dollars)'
         )
 
+        # Make the slider and time period
         fig.update_xaxes(
             rangeslider_visible=True,
             rangeselector=dict(
@@ -86,22 +88,28 @@ class Prediction:
         fig = plot_plotly(m=model, fcst=prediction, xlabel='Date', ylabel='Closing Price (in USD)', figsize=(700,500))
         return fig        
 
-
+# Printing the page title
 st.title('Prediction')
 
+# Listing crypto names and symbols
 crypto_name = ["Bitcoin (BTC)", "Ethereum (ETH)", "XRP (XRP)", "Tether (USDT)", "Dogecoin (DOGE)", "Cardano (ADA)", "Polygon (MATIC)", "Binance Coin (BNB)", "USD Coin (USDC)", "Binance USD (BUSD)"]
 
+# make selectbox widget
 selected = st.selectbox(label='Select your cryptocurrency', options=crypto_name)
 
+# Solit the name and the symbol of the cryptocurrency
 words = selected.split(" ")
 crypto_name = " ".join(words[:-1])
 crypto_symbol = words[-1].strip("()")
 
+# Initializing class
 crypto_predict = Prediction(crypto_name, crypto_symbol)
 
+# Get data the data
 crypto_data_3y = crypto_predict.getData()
 crypto_data_for_prediction = crypto_predict.getDataForPrediction()
 
+# Printing on Streamlit
 st.subheader('Live 3 Years Chart')
 st.plotly_chart(crypto_predict.visualize(crypto_data_3y))
 

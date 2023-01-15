@@ -59,7 +59,7 @@ fig = px.line(
     labels={
         "Close": "Closing Price (in USD)"
     }
-    )
+)
 
 # Visualizing the bar chart for the market capitalization comparison
 marketcap_df = pd.DataFrame({'Name':selected,'Marketcap':marketcap_list})

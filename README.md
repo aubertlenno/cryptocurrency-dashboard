@@ -3,14 +3,12 @@
 This repository contains the program that I made for Algorithm and Programming Semester 1 Final Project
 
 
-
-### Description
+## Description
 
 I made a cryptocurrency dashboard that can track the top 10 market capitalization cryptocurrencies' price. Also you can compare one cryptocurrency with another, and finally you can see the forecast of every cryptocurrency for 6 months ahead.
 
 
-
-### How to run
+## How to run
 
 To run it you can click [this link](https://aubertlenno-cryptocurrency-dashboard-1-home-1uy7p5.streamlit.app/)
 
@@ -21,3 +19,6 @@ Or, if you want to **run it locally**, you can follow the step-by-step tutorial 
 3. Search "Command Prompt" and run it
 4. Direct to the "cryptocurrency-dashboard" folder using `cd <folder path>`
 5. Type in `streamlit run 1_Home.py`
+
+
+### Demo video link [here](https://youtu.be/1JgssA0jaRM)
